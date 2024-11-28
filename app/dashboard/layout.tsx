@@ -5,6 +5,8 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+export const experimental_ppr = true;
+
 function Layout({ children }: LayoutProps) {
   return (
     <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
