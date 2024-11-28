@@ -1,16 +1,11 @@
-
 import { generateYAxis } from "@/app/lib/utils";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { lusitana } from "@/app/ui/fonts";
-import { Revenue } from "@/app/lib/definitions";
+import { revenue } from "@/app/lib/placeholder-data";
+import Revenue from "@/models/Revenues";
 
-export default async function RevenueChart({
-  revenue,
-}: {
-  revenue: Revenue[];
-}) {
+export default async function RevenueChart() {
   const chartHeight = 350;
-
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
   if (!revenue || revenue.length === 0) {
@@ -56,3 +51,15 @@ export default async function RevenueChart({
     </div>
   );
 }
+
+const fetchRevenue = async () => {
+  try {
+    console.log("Fetching revenue data...");
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    const revenue = await Revenue.find({}).lean();
+    console.log("Data fetch completed after 3 seconds.");
+    return revenue;
+  } catch (error) {
+    console.log(error);
+  }
+};

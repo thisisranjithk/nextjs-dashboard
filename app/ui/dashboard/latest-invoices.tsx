@@ -2,13 +2,14 @@ import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Image from "next/image";
 import { lusitana } from "@/app/ui/fonts";
-import { LatestInvoice } from "@/app/lib/definitions";
+// import { LatestInvoice } from "@/app/lib/definitions";
+import Invoice from "@/models/Invoices";
 
-export default async function LatestInvoices({
-  latestInvoices,
-}: {
-  latestInvoices: LatestInvoice[];
-}) {
+export default async function LatestInvoices() {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const latestInvoices = await Invoice.find({})
+    .sort({ createdAt: -1 })
+    .limit(5);
   return (
     <div className="flex w-full flex-col md:col-span-4">
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>

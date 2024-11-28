@@ -20,6 +20,6 @@ const RevenueSchema = new Schema(
   }
 );
 
-const Revenue = models.Revenue || model("Revenue", RevenueSchema, "revenue");
+const Revenue = models.Revenue || model("Revenue", RevenueSchema, "revenues");
 
 export default Revenue;
